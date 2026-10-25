@@ -953,3 +953,41 @@ body.note-page {
     height: 30px;
   }
 }
+
+
+/* CEH 文章頁面：整體置中修正 */
+body.note-page {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.note-page .note-header {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.note-page .note-layout {
+  box-sizing: border-box;
+  width: calc(100% - 64px);
+  max-width: 1120px;
+  margin: 44px auto 80px;
+  grid-template-columns: 205px minmax(0, 1fr);
+  gap: 36px;
+}
+
+.note-page .note-content {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+/* 平板與手機 */
+@media (max-width: 800px) {
+  .note-page .note-layout {
+    width: calc(100% - 32px);
+    margin: 24px auto 48px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+
