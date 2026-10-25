@@ -1,424 +1,530 @@
 
-/* =========================
-   1. 全站色彩與基本設定
-   ========================= */
+/* ========================================
+   CEH Article Page — Japanese Technical Journal
+   只調整文章頁面，不影響首頁
+======================================== */
 
-:root {
-  color-scheme: light;
-  --bg: #f7f6f2;
-  --surface: #ffffff;
-  --text: #303b34;
-  --muted: #788078;
-  --accent: #456b54;
-  --border: #e6e7df;
-  --soft: #eaf0e9;
-}
+body.note-page {
+  --note-bg: #f7f6f1;
+  --note-paper: #fffefa;
+  --note-text: #29352f;
+  --note-muted: #788078;
+  --note-green: #486653;
+  --note-green-light: #eaf0e9;
+  --note-border: #e4e5dc;
 
-body.dark {
-  color-scheme: dark;
-  --bg: #1d2420;
-  --surface: #28312b;
-  --text: #e7ece6;
-  --muted: #b1bcb2;
-  --accent: #a8c9ad;
-  --border: #414a42;
-  --soft: #344438;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Noto Sans TC", sans-serif;
-  line-height: 1.8;
-  transition: background .2s, color .2s;
+  background: var(--note-bg);
+  color: var(--note-text);
+  font-family:
+    -apple-system, BlinkMacSystemFont,
+    "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  line-height: 1.85;
 }
 
-a {
-  color: inherit;
+/* 頂部導覽 */
+
+.note-page .note-header {
+  min-height: 68px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(255, 254, 250, 0.96);
+  border-bottom: 1px solid var(--note-border);
+}
+
+.note-page .note-header .brand {
+  color: var(--note-text);
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+}
+
+.note-page .note-header .brand span {
+  color: var(--note-green);
+}
+
+.note-page .note-header nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.note-page .note-header nav a {
+  color: var(--note-muted);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s ease;
+}
+
+.note-page .note-header nav a:hover {
+  color: var(--note-green);
+}
+
+/* 主版面 */
+
+.note-page .note-layout {
+  width: min(1120px, calc(100% - 48px));
+  margin: 44px auto 80px;
+  display: grid;
+  grid-template-columns: 205px minmax(0, 1fr);
+  align-items: start;
+  gap: 52px;
+}
+
+/* 左側目錄 */
+
+.note-page .note-sidebar {
+  position: sticky;
+  top: 28px;
+  padding: 22px 18px;
+  background: var(--note-paper);
+  border: 1px solid var(--note-border);
+  border-radius: 12px;
+}
+
+.note-page .note-sidebar-label {
+  margin: 0 0 14px;
+  color: var(--note-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.note-page .note-sidebar a {
+  display: block;
+  margin: 0 -8px;
+  padding: 8px;
+  border-radius: 6px;
+  color: #657067;
+  font-size: 12px;
+  line-height: 1.65;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.note-page .note-sidebar a:hover {
+  background: var(--note-green-light);
+  color: var(--note-green);
+}
+
+/* 文章紙張 */
+
+.note-page .note-content {
+  min-width: 0;
+  padding: 42px 48px;
+  background: var(--note-paper);
+  border: 1px solid var(--note-border);
+  border-radius: 14px;
+  box-shadow: 0 12px 38px rgba(49, 57, 45, 0.035);
+}
+
+/* 麵包屑 */
+
+.note-page .note-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 36px;
+  color: #9a9e96;
+  font-size: 12px;
+}
+
+.note-page .note-breadcrumb a {
+  color: var(--note-green);
   text-decoration: none;
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+.note-page .note-breadcrumb a:hover {
+  text-decoration: underline;
 }
 
-button,
-input {
-  font: inherit;
+/* 文章標題區 */
+
+.note-page .note-hero {
+  padding: 0 0 32px;
+  border-bottom: 1px solid var(--note-border);
 }
 
-button {
+.note-page .note-hero .tag {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: var(--note-green-light);
+  color: var(--note-green);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+}
+
+.note-page .note-hero h1 {
+  margin: 0 0 18px;
+  color: var(--note-text);
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 650;
+  line-height: 1.45;
+  letter-spacing: 0.025em;
+}
+
+.note-page .note-lead {
+  max-width: 620px;
+  margin: 0;
+  color: #6e776e;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.note-page .note-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.note-page .note-meta span {
+  padding: 5px 10px;
+  border: 1px solid var(--note-border);
+  border-radius: 4px;
+  color: var(--note-muted);
+  font-size: 11px;
+}
+
+/* 文章區塊 */
+
+.note-page .note-content section {
+  margin-top: 42px;
+  scroll-margin-top: 24px;
+}
+
+.note-page .note-content section + section {
+  padding-top: 32px;
+  border-top: 1px solid var(--note-border);
+}
+
+.note-page .note-content h2 {
+  margin: 0 0 22px;
+  padding-left: 14px;
+  border-left: 3px solid var(--note-green);
+  color: var(--note-text);
+  font-size: 22px;
+  font-weight: 720;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+}
+
+.note-page .note-content h3 {
+  margin: 28px 0 12px;
+  color: var(--note-green);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.note-page .note-content p {
+  margin: 12px 0 18px;
+  color: #525d54;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.note-page .note-content ul,
+.note-page .note-content ol {
+  padding-left: 24px;
+  margin: 14px 0 24px;
+  color: #525d54;
+  font-size: 14px;
+}
+
+.note-page .note-content li {
+  padding-left: 4px;
+  margin: 8px 0;
+}
+
+.note-page .note-content li::marker {
+  color: var(--note-green);
+}
+
+.note-page .note-content strong {
+  color: #344b3b;
+}
+
+/* 柔和的重點提示框 */
+
+.note-page .note-callout {
+  margin: 24px 0;
+  padding: 20px 22px;
+  background: #f0f3ec;
+  border: 0;
+  border-left: 3px solid #819681;
+  border-radius: 0 8px 8px 0;
+}
+
+.note-page .note-callout strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--note-green);
+  font-size: 14px;
+}
+
+.note-page .note-callout p {
+  margin: 0;
+  color: #59675a;
+  font-size: 13px;
+}
+
+/* 學習流程 */
+
+.note-page .note-steps {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.note-page .note-step {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 14px;
+  padding: 17px;
+  border: 1px solid var(--note-border);
+  border-radius: 8px;
+  background: #fffefa;
+}
+
+.note-page .note-step > span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--note-green-light);
+  color: var(--note-green);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.note-page .note-step strong {
+  font-size: 14px;
+}
+
+.note-page .note-step p {
+  margin: 5px 0 0;
+  color: var(--note-muted);
+  font-size: 13px;
+}
+
+/* 表格：外層可橫向捲動 */
+
+.note-page .note-table-wrap {
+  width: 100%;
+  margin: 22px 0 28px;
+  overflow-x: auto;
+  border: 1px solid var(--note-border);
+  border-radius: 8px;
+}
+
+.note-page .note-content table {
+  width: 100%;
+  min-width: 420px;
+  border-collapse: collapse;
+  background: #fffefa;
+  font-size: 13px;
+  text-align: left;
+}
+
+.note-page .note-content th {
+  padding: 14px 16px;
+  background: #edf1e9;
+  color: #405844;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.note-page .note-content td {
+  padding: 13px 16px;
+  border-top: 1px solid #e9eae2;
+  color: #596158;
+  vertical-align: top;
+}
+
+.note-page .note-content tbody tr:hover {
+  background: #f8f8f2;
+}
+
+/* 複習清單 */
+
+.note-page .note-checklist {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 30px;
+}
+
+.note-page .note-checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 13px 15px;
+  border: 1px solid var(--note-border);
+  border-radius: 7px;
+  background: #fffefa;
+  color: #515d53;
+  font-size: 13px;
+  line-height: 1.8;
   cursor: pointer;
 }
 
-.wrap {
-  width: min(1040px, calc(100% - 40px));
-  margin: auto;
+.note-page .note-checklist input {
+  flex: 0 0 auto;
+  margin-top: 6px;
+  accent-color: var(--note-green);
 }
 
-/* =========================
-   2. 導覽列
-   ========================= */
-
-.topbar {
-  border-bottom: 1px solid var(--border);
-  background: var(--bg);
+.note-page .note-checklist label:has(input:checked) {
+  background: #f0f3ec;
+  color: #7a8379;
 }
 
-.nav {
-  min-height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+/* 結尾 */
+
+.note-page .note-end {
+  margin: 36px 0 20px;
+  padding: 28px 20px;
+  background: #edf1e9;
+  border-radius: 8px;
+  text-align: center;
 }
 
-.brand {
-  font-family: Georgia, serif;
-  font-size: 23px;
-  font-weight: 700;
-  letter-spacing: .04em;
+.note-page .note-end span {
+  color: #7d8c7e;
+  font-size: 10px;
+  letter-spacing: 0.18em;
 }
 
-.navlinks {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  font-size: 14px;
+.note-page .note-end p {
+  margin: 10px 0 0;
+  color: #405844;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 17px;
 }
 
-.navlinks a:hover {
-  color: var(--accent);
-}
-
-.theme-btn {
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 50px;
-  padding: 5px 12px;
-}
-
-/* =========================
-   3. 首頁主視覺
-   ========================= */
-
-.hero {
-  padding: 84px 0 68px;
-  border-bottom: 1px solid var(--border);
-}
-
-.eyebrow {
-  color: var(--accent);
-  font-size: 12px;
-  letter-spacing: .2em;
-  font-weight: 700;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  max-width: 700px;
-  margin: 16px 0;
-  font-family: Georgia, "Noto Serif TC", serif;
-  font-size: clamp(34px, 6vw, 56px);
-  line-height: 1.35;
-  letter-spacing: .02em;
-}
-
-.hero-desc {
-  max-width: 570px;
-  color: var(--muted);
-  font-size: 16px;
-}
-
-.hero-actions {
+.note-page .note-footer {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: 12px;
-  margin-top: 28px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 14px;
-  border: 1px solid var(--accent);
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-}
-
-body.dark .btn-primary {
-  color: #1d2420;
-}
-
-.btn-secondary {
-  color: var(--accent);
-}
-
-/* =========================
-   4. 區塊標題
-   ========================= */
-
-.section {
-  padding: 54px 0;
-}
-
-.section-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 24px;
-}
-
-.section-head h2 {
-  font-size: 25px;
-  margin-bottom: 4px;
-}
-
-.section-head p {
-  color: var(--muted);
-  margin-bottom: 0;
-  font-size: 14px;
-}
-
-/* =========================
-   5. 技術分類卡片
-   ========================= */
-
-.categories {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.category {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 22px;
-  transition: transform .2s, border-color .2s;
-}
-
-.category:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-}
-
-.category-icon {
-  font-size: 23px;
-  margin-bottom: 12px;
-}
-
-.category h3 {
-  margin-bottom: 6px;
-}
-
-.category p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 12px;
-}
-
-.category small {
-  color: var(--accent);
-  font-size: 12px;
-}
-
-/* =========================
-   6. 搜尋框
-   ========================= */
-
-.searchbox {
-  width: min(340px, 100%);
-  padding: 10px 14px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: var(--surface);
-  color: var(--text);
-}
-
-/* =========================
-   7. 文章卡片
-   ========================= */
-
-.articles {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.article {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  min-height: 225px;
-}
-
-.article[hidden] {
-  display: none;
-}
-
-.tag {
-  color: var(--accent);
-  background: var(--soft);
-  display: inline-block;
-  width: fit-content;
-  padding: 2px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  margin-bottom: 12px;
-}
-
-.article h3 {
-  font-size: 19px;
-  margin-bottom: 8px;
-}
-
-.article p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 18px;
-}
-
-.article-foot {
-  margin-top: auto;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.article-foot a {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.empty {
-  display: none;
-  color: var(--muted);
-  padding: 20px 0;
-}
-
-/* =========================
-   8. 關於本站
-   ========================= */
-
-.about {
-  background: var(--soft);
-  border-radius: 12px;
-  padding: 30px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 28px;
-}
-
-.about h2 {
-  margin-bottom: 0;
-}
-
-.about p {
-  margin-bottom: 0;
-  font-size: 14px;
-}
-
-/* =========================
-   9. 頁尾
-   ========================= */
-
-footer {
   margin-top: 40px;
-  border-top: 1px solid var(--border);
-  padding: 28px 0;
-  color: var(--muted);
+  padding-top: 22px;
+  border-top: 1px solid var(--note-border);
   font-size: 12px;
 }
 
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
+.note-page .note-footer a,
+.note-page .note-small a {
+  color: var(--note-green);
+  text-decoration: none;
 }
 
-/* =========================
-   10. 手機版響應式設計
-   ========================= */
+.note-page .note-footer a:hover,
+.note-page .note-small a:hover {
+  text-decoration: underline;
+}
 
-@media (max-width: 680px) {
-  .wrap {
-    width: calc(100% - 32px);
+.note-page .note-footer span,
+.note-page .note-small {
+  color: var(--note-muted);
+  font-size: 12px;
+}
+
+.note-page .note-small {
+  margin-top: 22px;
+  line-height: 1.9;
+}
+
+/* 手機版 */
+
+@media (max-width: 800px) {
+  .note-page .note-header {
+    padding: 16px 22px;
   }
 
-  .nav {
-    min-height: 64px;
-    flex-wrap: wrap;
-    padding: 12px 0;
+  .note-page .note-header nav {
+    gap: 14px;
   }
 
-  .navlinks {
-    gap: 12px;
-    font-size: 12px;
+  .note-page .note-layout {
+    width: min(100% - 28px, 640px);
+    margin: 22px auto 48px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
   }
 
-  .brand {
-    font-size: 20px;
+  .note-page .note-sidebar {
+    position: static;
+    padding: 14px;
   }
 
-  .hero {
-    padding: 56px 0 48px;
+  .note-page .note-sidebar-label {
+    margin-bottom: 8px;
   }
 
-  .categories,
-  .articles {
-    grid-template-columns: 1fr;
+  .note-page .note-sidebar a {
+    display: inline-block;
+    margin: 3px 2px;
+    padding: 6px 9px;
+    background: #f5f5ef;
   }
 
-  .section {
-    padding: 40px 0;
+  .note-page .note-content {
+    padding: 26px 22px;
   }
 
-  .section-head {
-    align-items: stretch;
+  .note-page .note-breadcrumb {
+    margin-bottom: 26px;
+  }
+
+  .note-page .note-content section {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .note-page .note-header {
+    align-items: flex-start;
     flex-direction: column;
+    gap: 10px;
   }
 
-  .searchbox {
-    width: 100%;
+  .note-page .note-header nav {
+    flex-wrap: wrap;
   }
 
-  .about {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 22px;
+  .note-page .note-layout {
+    width: calc(100% - 20px);
+  }
+
+  .note-page .note-content {
+    padding: 22px 16px;
+  }
+
+  .note-page .note-hero h1 {
+    font-size: 29px;
+  }
+
+  .note-page .note-content h2 {
+    font-size: 19px;
+  }
+
+  .note-page .note-step {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .note-page .note-step > span {
+    width: 30px;
+    height: 30px;
   }
 }
